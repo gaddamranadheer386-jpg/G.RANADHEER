@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Learning Platform - AI-Powered Personalized Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .ai-pulse {
+            animation: aiPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes aiPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #4ade80, #22c55e, #16a34a);
+            animation: progressShine 2s ease-in-out infinite;
+        }
+        
+        @keyframes progressShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .learning-path {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .assessment-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .analytics-card {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .typing-effect {
+            overflow: hidden;
+            border-right: 2px solid #667eea;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #667eea; }
+        }
+        
+        .skill-badge {
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .document-upload {
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        
+        .document-upload:hover {
+            border-color: #667eea;
+            background-color: #f8fafc;
+        }
+        
+        .document-upload.dragover {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen">
+    <!-- Enhanced Header -->
+    <header class="gradient-bg shadow-2xl">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center ai-pulse">
+                        <span class="text-3xl">🧠</span>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white">Adaptive Learning Platform</h1>
+                        <p class="text-blue-100 text-sm">AI-Powered Personalized Education System</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="text-right text-white">
+                        <div class="text-sm font-medium" id="currentUser">Welcome, Alex!</div>
+                        <div class="text-xs text-blue-200">Learning Streak: <span id="streak">7 days</span></div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            <span class="text-white text-sm font-medium">AI Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- AI Dashboard Overview -->
+        <div class="mb-8">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Your Learning Journey</h2>
+                        <p class="text-gray-600 typing-effect" id="aiInsight">AI analyzing your progress and optimizing your learning path...</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold text-indigo-600" id="totalProgress">73%</div>
+                        <div class="text-sm text-gray-500">Overall Progress</div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-6 text-white card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-2xl font-bold" id="documentsProcessed">24</div>
+                                <div class="text-purple-100 text-sm">Documents Processed</div>
+                            </div>
+                            <div class="text-3xl opacity-80">📄</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl p-6 text-white card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-2xl font-bold" id="assessmentsCompleted">18</div>
+                                <div class="text-blue-100 text-sm">Assessments Completed</div>
+                            </div>
+                            <div class="text-3xl opacity-80">✅</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-6 text-white card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-2xl font-bold" id="skillsLearned">12</div>
+                                <div class="text-green-100 text-sm">Skills Mastered</div>
+                            </div>
+                            <div class="text-3xl opacity-80">🎯</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-6 text-white card-hover">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-2xl font-bold" id="studyTime">47h</div>
+                                <div class="text-orange-100 text-sm">Total Study Time</div>
+                            </div>
+                            <div class="text-3xl opacity-80">⏱️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Main Learning Interface -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Document Processing Section -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                            <span class="mr-3">📚</span>
+                            Document Processing & Analysis
+                        </h3>
+                        <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-medium">
+                            AI-Powered
+                        </div>
+                    </div>
+                    
+                    <div class="document-upload rounded-2xl p-8 text-center mb-6" id="documentUpload">
+                        <div class="text-4xl mb-4">📁</div>
+                        <h4 class="text-lg font-semibold text-gray-700 mb-2">Upload Learning Materials</h4>
+                        <p class="text-gray-500 text-sm mb-4">Drag & drop PDFs, Word docs, or text files. AI will analyze and create personalized content.</p>
+                        <button onclick="triggerFileUpload()" class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-colors font-medium">
+                            Choose Files
+                        </button>
+                        <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.txt" class="hidden" onchange="handleFileUpload(event)">
+                    </div>
+                    
+                    <div id="uploadedFiles" class="space-y-3">
+                        <!-- Simulated uploaded files -->
+                        <div class="bg-gray-50 rounded-xl p-4 flex items-center justify-between fade-in">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-red-600 text-sm font-bold">PDF</span>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">Machine Learning Fundamentals.pdf</div>
+                                    <div class="text-xs text-gray-500">Processed • 45 pages • 12 concepts identified</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Analyzed</div>
+                                <button onclick="generateAssessment('ml-fundamentals')" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Generate Quiz</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-xl p-4 flex items-center justify-between fade-in">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <span class="text-blue-600 text-sm font-bold">DOC</span>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-800">Data Structures Notes.docx</div>
+                                    <div class="text-xs text-gray-500">Processed • 28 pages • 8 algorithms covered</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Analyzed</div>
+                                <button onclick="generateAssessment('data-structures')" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Generate Quiz</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI-Generated Assessments -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                            <span class="mr-3">🎯</span>
+                            Adaptive Assessments
+                        </h3>
+                        <button onclick="generateNewAssessment()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all text-sm font-medium">
+                            Generate New Quiz
+                        </button>
+                    </div>
+                    
+                    <div id="currentAssessment" class="space-y-6">
+                        <div class="assessment-card rounded-2xl p-6 text-white">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-lg font-bold">Machine Learning Concepts</h4>
+                                <div class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs font-medium">
+                                    Difficulty: Adaptive
+                                </div>
+                            </div>
+                            <p class="text-blue-100 text-sm mb-4">AI-generated questions based on your uploaded materials and learning progress</p>
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm">Questions: 10 | Time: 15 min | Adaptive Difficulty</div>
+                                <button onclick="startAssessment('ml-concepts')" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors font-medium text-sm">
+                                    Start Assessment
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-r from-green-400 to-blue-500 rounded-xl p-4 text-white">
+                                <h5 class="font-semibold mb-2">Data Structures Quiz</h5>
+                                <p class="text-xs text-green-100 mb-3">Based on your uploaded notes</p>
+                                <button onclick="startAssessment('data-structures')" class="bg-white text-green-600 px-3 py-1 rounded text-xs font-medium hover:bg-gray-100 transition-colors">
+                                    Take Quiz
+                                </button>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-purple-400 to-pink-500 rounded-xl p-4 text-white">
+                                <h5 class="font-semibold mb-2">Algorithm Analysis</h5>
+                                <p class="text-xs text-purple-100 mb-3">Personalized difficulty level</p>
+                                <button onclick="startAssessment('algorithms')" class="bg-white text-purple-600 px-3 py-1 rounded text-xs font-medium hover:bg-gray-100 transition-colors">
+                                    Take Quiz
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Recommendations -->
+                <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                            <span class="mr-3">🤖</span>
+                            AI Study Recommendations
+                        </h3>
+                        <div class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">
+                            Updated 2 min ago
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="learning-path rounded-2xl p-6 text-white">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-lg font-bold">Recommended Learning Path</h4>
+                                <div class="text-2xl">🎯</div>
+                            </div>
+                            <p class="text-pink-100 text-sm mb-4">Based on your performance analysis and learning patterns</p>
+                            <div class="space-y-3">
+                                <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-medium">1. Review: Binary Search Trees</span>
+                                        <span class="text-xs bg-white bg-opacity-30 px-2 py-1 rounded">Priority: High</span>
+                                    </div>
+                                    <div class="text-xs text-pink-100 mt-1">Identified knowledge gap from recent assessment</div>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-medium">2. Practice: Graph Algorithms</span>
+                                        <span class="text-xs bg-white bg-opacity-30 px-2 py-1 rounded">Priority: Medium</span>
+                                    </div>
+                                    <div class="text-xs text-pink-100 mt-1">Strengthen understanding with hands-on exercises</div>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-medium">3. Advance: Machine Learning Models</span>
+                                        <span class="text-xs bg-white bg-opacity-30 px-2 py-1 rounded">Priority: Low</span>
+                                    </div>
+                                    <div class="text-xs text-pink-100 mt-1">Ready for next level concepts</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-4 text-white">
+                                <h5 class="font-semibold mb-2 flex items-center">
+                                    <span class="mr-2">📖</span>
+                                    Study Session
+                                </h5>
+                                <p class="text-xs text-indigo-100 mb-3">Optimal time: 25 minutes focused study</p>
+                                <button onclick="startStudySession()" class="bg-white text-indigo-600 px-3 py-1 rounded text-xs font-medium hover:bg-gray-100 transition-colors">
+                                    Start Session
+                                </button>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-teal-500 to-green-600 rounded-xl p-4 text-white">
+                                <h5 class="font-semibold mb-2 flex items-center">
+                                    <span class="mr-2">🧠</span>
+                                    Memory Review
+                                </h5>
+                                <p class="text-xs text-teal-100 mb-3">Spaced repetition for 8 concepts</p>
+                                <button onclick="startMemoryReview()" class="bg-white text-teal-600 px-3 py-1 rounded text-xs font-medium hover:bg-gray-100 transition-colors">
+                                    Review Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Sidebar -->
+            <div class="space-y-6">
+                <!-- Progress Analytics -->
+                <div class="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-2">📊</span>
+                        Progress Analytics
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-700">Overall Progress</span>
+                                <span class="text-sm font-bold text-indigo-600">73%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="progress-bar h-3 rounded-full" style="width: 73%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-700">Machine Learning</span>
+                                <span class="text-sm font-bold text-green-600">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-700">Data Structures</span>
+                                <span class="text-sm font-bold text-blue-600">67%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 67%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-700">Algorithms</span>
+                                <span class="text-sm font-bold text-purple-600">58%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 58%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl">
+                        <h4 class="font-semibold text-gray-800 mb-2">Weekly Goal</h4>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Complete 5 assessments</span>
+                            <span class="text-sm font-bold text-indigo-600">3/5</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                            <div class="bg-indigo-500 h-2 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Chart -->
+                <div class="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-2">📈</span>
+                        Performance Trends
+                    </h3>
+                    <canvas id="performanceChart" width="300" height="200"></canvas>
+                </div>
+
+                <!-- Skill Mastery -->
+                <div class="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-2">🏆</span>
+                        Skill Mastery
+                    </h3>
+                    
+                    <div class="space-y-3">
+                        <div class="skill-badge text-white p-3 rounded-xl">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-sm">Binary Trees</span>
+                                <span class="text-xs bg-white bg-opacity-30 px-2 py-1 rounded">Mastered</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-3 rounded-xl">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-sm">Sorting Algorithms</span>
+                                <span class="text-xs bg-white bg-opacity-30 px-2 py-1 rounded">Advanced</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-400 to-purple-500 text-white p-3 rounded-xl">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-sm">Graph Theory</span>
+                                <span class="text-xs bg-white bg-opacity-30 px-2 py-1 rounded">Intermediate</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-gray-400 to-gray-600 text-white p-3 rounded-xl">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-sm">Dynamic Programming</span>
+                                <span class="text-xs bg-white bg-opacity-30 px-2 py-1 rounded">Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Study Streak -->
+                <div class="analytics-card rounded-3xl shadow-xl p-6 text-white">
+                    <h3 class="text-lg font-bold mb-4 flex items-center">
+                        <span class="mr-2">🔥</span>
+                        Study Streak
+                    </h3>
+                    
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">7</div>
+                        <div class="text-green-100 text-sm mb-4">Days in a row!</div>
+                        <div class="bg-white bg-opacity-20 rounded-lg p-3">
+                            <div class="text-xs text-green-100 mb-2">This week's activity</div>
+                            <div class="flex justify-between items-end space-x-1">
+                                <div class="bg-white bg-opacity-40 w-4 h-6 rounded"></div>
+                                <div class="bg-white bg-opacity-60 w-4 h-8 rounded"></div>
+                                <div class="bg-white bg-opacity-80 w-4 h-10 rounded"></div>
+                                <div class="bg-white bg-opacity-90 w-4 h-12 rounded"></div>
+                                <div class="bg-white w-4 h-14 rounded"></div>
+                                <div class="bg-white w-4 h-16 rounded"></div>
+                                <div class="bg-white w-4 h-18 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights -->
+                <div class="bg-white rounded-3xl shadow-xl p-6 border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-2">🤖</span>
+                        AI Insights
+                    </h3>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                            <div class="font-semibold text-blue-800 mb-1">Learning Pattern</div>
+                            <p class="text-blue-700">You perform 23% better in morning study sessions. Consider scheduling complex topics before 11 AM.</p>
+                        </div>
+                        
+                        <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                            <div class="font-semibold text-green-800 mb-1">Strength Identified</div>
+                            <p class="text-green-700">Excellent progress in tree-based algorithms. Ready for advanced graph theory concepts.</p>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                            <div class="font-semibold text-yellow-800 mb-1">Recommendation</div>
+                            <p class="text-yellow-700">Focus on dynamic programming fundamentals. Suggested study time: 30 minutes daily for 1 week.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Modal -->
+    <div id="assessmentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800" id="assessmentTitle">Assessment</h3>
+                    <button onclick="closeAssessment()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                </div>
+                
+                <div id="assessmentContent">
+                    <!-- Assessment questions will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Advanced Learning Platform Data and AI Engine
+        const learningData = {
+            user: {
+                name: "Alex",
+                streak: 7,
+                totalProgress: 73,
+                documentsProcessed: 24,
+                assessmentsCompleted: 18,
+                skillsLearned: 12,
+                studyTime: "47h"
+            },
+            subjects: {
+                "machine-learning": {
+                    progress: 85,
+                    concepts: ["supervised learning", "neural networks", "decision trees", "clustering", "feature selection"],
+                    difficulty: "intermediate",
+                    lastStudied: "2024-01-15",
+                    strengths: ["classification", "regression"],
+                    weaknesses: ["deep learning", "reinforcement learning"]
+                },
+                "data-structures": {
+                    progress: 67,
+                    concepts: ["arrays", "linked lists", "trees", "graphs", "hash tables"],
+                    difficulty: "beginner",
+                    lastStudied: "2024-01-14",
+                    strengths: ["arrays", "basic trees"],
+                    weaknesses: ["graph algorithms", "advanced trees"]
+                },
+                "algorithms": {
+                    progress: 58,
+                    concepts: ["sorting", "searching", "dynamic programming", "greedy algorithms"],
+                    difficulty: "intermediate",
+                    lastStudied: "2024-01-13",
+                    strengths: ["sorting algorithms"],
+                    weaknesses: ["dynamic programming", "graph traversal"]
+                }
+            },
+            assessments: {
+                "ml-concepts": {
+                    title: "Machine Learning Concepts",
+                    questions: [
+                        {
+                            question: "What is the primary goal of supervised learning?",
+                            options: [
+                                "To find hidden patterns in unlabeled data",
+                                "To learn from labeled training data to make predictions",
+                                "To optimize system performance through trial and error",
+                                "To reduce the dimensionality of data"
+                            ],
+                            correct: 1,
+                            explanation: "Supervised learning uses labeled training data to learn patterns and make predictions on new, unseen data."
+                        },
+                        {
+                            question: "Which algorithm is best suited for classification problems with non-linear decision boundaries?",
+                            options: [
+                                "Linear Regression",
+                                "Logistic Regression", 
+                                "Support Vector Machine with RBF kernel",
+                                "K-Means Clustering"
+                            ],
+                            correct: 2,
+                            explanation: "SVM with RBF kernel can handle non-linear decision boundaries by mapping data to higher dimensions."
+                        }
+                    ]
+                },
+                "data-structures": {
+                    title: "Data Structures Fundamentals",
+                    questions: [
+                        {
+                            question: "What is the time complexity of searching in a balanced binary search tree?",
+                            options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+                            correct: 1,
+                            explanation: "In a balanced BST, the height is log n, so search operations take O(log n) time."
+                        },
+                        {
+                            question: "Which data structure is best for implementing a LIFO (Last In, First Out) system?",
+                            options: ["Queue", "Stack", "Linked List", "Array"],
+                            correct: 1,
+                            explanation: "A stack follows LIFO principle where the last element added is the first one removed."
+                        }
+                    ]
+                }
+            },
+            aiInsights: [
+                "Your learning velocity has increased 34% this week - excellent progress!",
+                "Pattern detected: You retain information better with visual examples",
+                "Recommendation: Focus on dynamic programming - it's your next breakthrough topic",
+                "Your problem-solving approach shows strong analytical thinking",
+                "Consider reviewing graph algorithms to strengthen your foundation"
+            ]
+        };
+
+        let currentAssessment = null;
+        let currentQuestionIndex = 0;
+        let assessmentScore = 0;
+        let assessmentAnswers = [];
+
+        // Initialize the platform
+        function initializePlatform() {
+            updateDashboard();
+            createPerformanceChart();
+            startAIInsightRotation();
+            setupDragAndDrop();
+        }
+
+        function updateDashboard() {
+            // Update user stats
+            document.getElementById('currentUser').textContent = `Welcome, ${learningData.user.name}!`;
+            document.getElementById('streak').textContent = `${learningData.user.streak} days`;
+            document.getElementById('totalProgress').textContent = `${learningData.user.totalProgress}%`;
+            document.getElementById('documentsProcessed').textContent = learningData.user.documentsProcessed;
+            document.getElementById('assessmentsCompleted').textContent = learningData.user.assessmentsCompleted;
+            document.getElementById('skillsLearned').textContent = learningData.user.skillsLearned;
+            document.getElementById('studyTime').textContent = learningData.user.studyTime;
+        }
+
+        function startAIInsightRotation() {
+            const insights = learningData.aiInsights;
+            let currentIndex = 0;
+            
+            function rotateInsight() {
+                const element = document.getElementById('aiInsight');
+                element.style.opacity = '0';
+                
+                setTimeout(() => {
+                    element.textContent = insights[currentIndex];
+                    element.style.opacity = '1';
+                    currentIndex = (currentIndex + 1) % insights.length;
+                }, 500);
+            }
+            
+            // Initial insight
+            document.getElementById('aiInsight').textContent = insights[0];
+            currentIndex = 1;
+            
+            // Rotate every 5 seconds
+            setInterval(rotateInsight, 5000);
+        }
+
+        function createPerformanceChart() {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Study Score',
+                        data: [65, 72, 68, 78, 82, 85, 88],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Assessment Score',
+                        data: [70, 75, 73, 80, 85, 87, 90],
+                        borderColor: '#f093fb',
+                        backgroundColor: 'rgba(240, 147, 251, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function setupDragAndDrop() {
+            const uploadArea = document.getElementById('documentUpload');
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFileUpload({ target: { files: e.dataTransfer.files } });
+            });
+        }
+
+        function triggerFileUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        function handleFileUpload(event) {
+            const files = Array.from(event.target.files);
+            const uploadedFilesContainer = document.getElementById('uploadedFiles');
+            
+            files.forEach((file, index) => {
+                setTimeout(() => {
+                    const fileElement = createFileElement(file);
+                    uploadedFilesContainer.appendChild(fileElement);
+                    
+                    // Simulate AI processing
+                    setTimeout(() => {
+                        processDocument(fileElement, file);
+                    }, 2000);
+                }, index * 500);
+            });
+        }
+
+        function createFileElement(file) {
+            const fileDiv = document.createElement('div');
+            fileDiv.className = 'bg-gray-50 rounded-xl p-4 flex items-center justify-between fade-in';
+            
+            const fileType = file.name.split('.').pop().toUpperCase();
+            const typeColors = {
+                'PDF': 'bg-red-100 text-red-600',
+                'DOC': 'bg-blue-100 text-blue-600',
+                'DOCX': 'bg-blue-100 text-blue-600',
+                'TXT': 'bg-green-100 text-green-600'
+            };
+            
+            fileDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 ${typeColors[fileType] || 'bg-gray-100 text-gray-600'} rounded-lg flex items-center justify-center">
+                        <span class="text-sm font-bold">${fileType}</span>
+                    </div>
+                    <div>
+                        <div class="font-medium text-gray-800">${file.name}</div>
+                        <div class="text-xs text-gray-500">Processing...</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-medium">Processing</div>
+                </div>
+            `;
+            
+            return fileDiv;
+        }
+
+        function processDocument(fileElement, file) {
+            // Simulate AI document analysis
+            const concepts = Math.floor(Math.random() * 15) + 5;
+            const pages = Math.floor(Math.random() * 50) + 10;
+            
+            const statusDiv = fileElement.querySelector('.text-xs.text-gray-500');
+            const actionDiv = fileElement.querySelector('.flex.items-center.space-x-2');
+            
+            statusDiv.textContent = `Processed • ${pages} pages • ${concepts} concepts identified`;
+            actionDiv.innerHTML = `
+                <div class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Analyzed</div>
+                <button onclick="generateAssessment('${file.name}')" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Generate Quiz</button>
+            `;
+            
+            // Update document count
+            learningData.user.documentsProcessed++;
+            document.getElementById('documentsProcessed').textContent = learningData.user.documentsProcessed;
+        }
+
+        function generateAssessment(source) {
+            showNotification(`Generating AI assessment from ${source}...`, 'info');
+            
+            setTimeout(() => {
+                showNotification('New assessment ready! Check the Adaptive Assessments section.', 'success');
+            }, 2000);
+        }
+
+        function generateNewAssessment() {
+            const topics = ['Machine Learning', 'Data Structures', 'Algorithms', 'Database Systems', 'Software Engineering'];
+            const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+            
+            showNotification(`Generating personalized ${randomTopic} assessment based on your learning progress...`, 'info');
+            
+            setTimeout(() => {
+                showNotification(`New ${randomTopic} assessment created with adaptive difficulty!`, 'success');
+            }, 3000);
+        }
+
+        function startAssessment(assessmentId) {
+            currentAssessment = learningData.assessments[assessmentId];
+            if (!currentAssessment) {
+                showNotification('Assessment not found. Generating new one...', 'info');
+                return;
+            }
+            
+            currentQuestionIndex = 0;
+            assessmentScore = 0;
+            assessmentAnswers = [];
+            
+            document.getElementById('assessmentTitle').textContent = currentAssessment.title;
+            document.getElementById('assessmentModal').classList.remove('hidden');
+            document.getElementById('assessmentModal').classList.add('flex');
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = currentAssessment.questions[currentQuestionIndex];
+            const content = document.getElementById('assessmentContent');
+            
+            content.innerHTML = `
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm text-gray-500">Question ${currentQuestionIndex + 1} of ${currentAssessment.questions.length}</span>
+                        <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-medium">
+                            Adaptive Difficulty
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+                        <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300" style="width: ${((currentQuestionIndex + 1) / currentAssessment.questions.length) * 100}%"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-6">${question.question}</h4>
+                    <div class="space-y-3">
+                        ${question.options.map((option, index) => `
+                            <button onclick="selectAnswer(${index})" class="w-full text-left p-4 border border-gray-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50 transition-all duration-200 answer-option">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-6 h-6 border-2 border-gray-300 rounded-full flex items-center justify-center">
+                                        <span class="text-sm font-bold text-gray-400">${String.fromCharCode(65 + index)}</span>
+                                    </div>
+                                    <span class="text-gray-700">${option}</span>
+                                </div>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="flex justify-between">
+                    <button onclick="previousQuestion()" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors ${currentQuestionIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${currentQuestionIndex === 0 ? 'disabled' : ''}>
+                        Previous
+                    </button>
+                    <button id="nextButton" onclick="nextQuestion()" class="px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors opacity-50 cursor-not-allowed" disabled>
+                        ${currentQuestionIndex === currentAssessment.questions.length - 1 ? 'Finish' : 'Next'}
+                    </button>
+                </div>
+            `;
+        }
+
+        function selectAnswer(answerIndex) {
+            // Remove previous selections
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('border-indigo-500', 'bg-indigo-100');
+                option.querySelector('.w-6.h-6').classList.remove('bg-indigo-600', 'text-white');
+            });
+            
+            // Highlight selected answer
+            const selectedOption = document.querySelectorAll('.answer-option')[answerIndex];
+            selectedOption.classList.add('border-indigo-500', 'bg-indigo-100');
+            selectedOption.querySelector('.w-6.h-6').classList.add('bg-indigo-600', 'text-white');
+            
+            // Enable next button
+            const nextButton = document.getElementById('nextButton');
+            nextButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            nextButton.disabled = false;
+            
+            // Store answer
+            assessmentAnswers[currentQuestionIndex] = answerIndex;
+        }
+
+        function nextQuestion() {
+            if (assessmentAnswers[currentQuestionIndex] === undefined) return;
+            
+            // Check if answer is correct
+            const question = currentAssessment.questions[currentQuestionIndex];
+            if (assessmentAnswers[currentQuestionIndex] === question.correct) {
+                assessmentScore++;
+            }
+            
+            if (currentQuestionIndex < currentAssessment.questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                finishAssessment();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+                
+                // Restore previous answer if exists
+                if (assessmentAnswers[currentQuestionIndex] !== undefined) {
+                    selectAnswer(assessmentAnswers[currentQuestionIndex]);
+                }
+            }
+        }
+
+        function finishAssessment() {
+            const percentage = Math.round((assessmentScore / currentAssessment.questions.length) * 100);
+            const content = document.getElementById('assessmentContent');
+            
+            content.innerHTML = `
+                <div class="text-center">
+                    <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <span class="text-3xl text-white font-bold">${percentage}%</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-800 mb-2">Assessment Complete!</h4>
+                    <p class="text-gray-600 mb-6">You scored ${assessmentScore} out of ${currentAssessment.questions.length} questions correctly.</p>
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 mb-6">
+                        <h5 class="font-semibold text-gray-800 mb-3">AI Performance Analysis</h5>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <p>• ${percentage >= 80 ? 'Excellent understanding demonstrated' : percentage >= 60 ? 'Good grasp of concepts with room for improvement' : 'Recommend reviewing fundamental concepts'}</p>
+                            <p>• ${percentage >= 70 ? 'Ready for advanced topics' : 'Focus on strengthening current level'}</p>
+                            <p>• Personalized study plan updated based on your performance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <button onclick="closeAssessment()" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors">
+                            Close
+                        </button>
+                        <button onclick="viewDetailedResults()" class="flex-1 px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Update user stats
+            learningData.user.assessmentsCompleted++;
+            document.getElementById('assessmentsCompleted').textContent = learningData.user.assessmentsCompleted;
+        }
+
+        function viewDetailedResults() {
+            const content = document.getElementById('assessmentContent');
+            let resultsHTML = '<div class="space-y-6">';
+            
+            currentAssessment.questions.forEach((question, index) => {
+                const userAnswer = assessmentAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                
+                resultsHTML += `
+                    <div class="border border-gray-200 rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-500">Question ${index + 1}</span>
+                            <span class="px-2 py-1 rounded text-xs font-medium ${isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${isCorrect ? 'Correct' : 'Incorrect'}
+                            </span>
+                        </div>
+                        <h6 class="font-medium text-gray-800 mb-3">${question.question}</h6>
+                        <div class="space-y-2 text-sm">
+                            ${question.options.map((option, optIndex) => `
+                                <div class="p-2 rounded ${optIndex === question.correct ? 'bg-green-50 border border-green-200' : optIndex === userAnswer && !isCorrect ? 'bg-red-50 border border-red-200' : 'bg-gray-50'}">
+                                    <span class="font-medium">${String.fromCharCode(65 + optIndex)}.</span> ${option}
+                                    ${optIndex === question.correct ? '<span class="text-green-600 ml-2">✓ Correct</span>' : ''}
+                                    ${optIndex === userAnswer && !isCorrect ? '<span class="text-red-600 ml-2">✗ Your answer</span>' : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="mt-3 p-3 bg-blue-50 rounded-lg">
+                            <p class="text-sm text-blue-800"><strong>Explanation:</strong> ${question.explanation}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsHTML += `
+                </div>
+                <div class="mt-6 text-center">
+                    <button onclick="closeAssessment()" class="px-8 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors">
+                        Close Assessment
+                    </button>
+                </div>
+            `;
+            
+            content.innerHTML = resultsHTML;
+        }
+
+        function closeAssessment() {
+            document.getElementById('assessmentModal').classList.add('hidden');
+            document.getElementById('assessmentModal').classList.remove('flex');
+            currentAssessment = null;
+        }
+
+        function startStudySession() {
+            showNotification('Starting optimized 25-minute study session with spaced repetition...', 'info');
+            // In a real app, this would launch a study session interface
+        }
+
+        function startMemoryReview() {
+            showNotification('Loading spaced repetition cards for 8 concepts you need to review...', 'info');
+            // In a real app, this would launch a memory review interface
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-xl shadow-lg max-w-sm transform transition-all duration-300 translate-x-full`;
+            
+            const colors = {
+                'info': 'bg-blue-500 text-white',
+                'success': 'bg-green-500 text-white',
+                'warning': 'bg-yellow-500 text-white',
+                'error': 'bg-red-500 text-white'
+            };
+            
+            notification.className += ` ${colors[type]}`;
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <div class="text-xl">
+                        ${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : type === 'error' ? '❌' : 'ℹ️'}
+                    </div>
+                    <p class="text-sm font-medium">${message}</p>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
+        // Initialize the platform when the page loads
+        document.addEventListener('DOMContentLoaded', initializePlatform);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97e5585066849a7b',t:'MTc1Nzc0MjM5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
